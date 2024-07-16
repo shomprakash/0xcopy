@@ -3,7 +3,7 @@ const buttons = document.getElementById('buttons');
 let currentTweet = '';
 
 const API_KEY = 'e39fcff29dec4fa78de33d901a8da31f';
-const NEWS_URL = `https://newsapi.org/v2/everything?q=blockchain&apiKey=${API_KEY}`;
+const NEWS_URL = `https://newsapi.org/v2/everything?q=blockchain&apiKey=${e39fcff29dec4fa78de33d901a8da31f}`;
 
 const uniquePhrases = [
     "What's your take on this?",
