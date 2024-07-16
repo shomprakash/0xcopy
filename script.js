@@ -2,60 +2,53 @@ const tweetElement = document.getElementById('tweet');
 const buttons = document.getElementById('buttons');
 let currentTweet = '';
 
-const API_KEY = 'e39fcff29dec4fa78de33d901a8da31f';
-const NEWS_URL = `https://newsapi.org/v2/everything?q=blockchain&apiKey=${e39fcff29dec4fa78de33d901a8da31f}`;
-
-const uniquePhrases = [
-    "What's your take on this?",
-    "Is this the future of crypto?",
-    "How do you see this evolving?",
-    "Will this disrupt the market?",
-    "Is this the next big thing?",
-    "Could this change everything?",
-    "What does this mean for you?",
-    "Is this a game changer?",
-    "How will this impact us?",
-    "Is this the breakthrough we've been waiting for?",
-    "What are your thoughts?",
-    "Could this be the tipping point?",
-    "How significant is this?",
-    "Is this worth the hype?",
-    "Will this stand the test of time?",
-    "What's the potential here?",
-    "Is this innovation or hype?",
-    "How will this affect the industry?",
-    "Is this a step forward?",
-    "Could this be the new standard?",
-    "What implications does this have?",
-    "Is this a trend or a fad?",
-    "Will this catch on?",
-    "How big of an impact will this have?",
-    "Is this a risk worth taking?",
-    "Could this redefine the market?",
-    "What makes this special?",
-    "Is this the solution we need?",
-    "How do you feel about this?",
-    "Will this make a difference?",
-    "What should we expect?",
-    "Is this a revolution?",
-    "Could this lead to mass adoption?",
-    "How will this play out?",
-    "Is this the answer to our problems?",
-    "What challenges does this pose?",
-    "How credible is this?",
-    "Is this sustainable?",
-    "What are the potential pitfalls?",
-    "How does this compare?",
-    "Could this surpass expectations?",
-    "What do experts say?",
-    "Is this the real deal?",
-    "Will this live up to the hype?",
-    "How viable is this?",
-    "Could this reshape the landscape?",
-    "What does the future hold?",
-    "How promising is this?",
-    "Is this the breakthrough tech?",
-    "What’s next?"
+const tweets = [
+    "Why do they call it rush hour when nothing moves? via @shawm42",
+    "If tomatoes are a fruit, is ketchup a smoothie? via @shawm42",
+    "Do fish get thirsty? via @shawm42",
+    "If a turtle loses its shell, is it naked or homeless? via @shawm42",
+    "Why isn’t there mouse-flavored cat food? via @shawm42",
+    "If you try to fail, and succeed, which have you done? via @shawm42",
+    "Why do we press harder on a remote control when we know the batteries are getting weak? via @shawm42",
+    "Why do banks charge a fee on 'insufficient funds' when they know there is not enough money? via @shawm42",
+    "If love is blind, why is lingerie so popular? via @shawm42",
+    "If you can’t drink and drive, why do you need a driver’s license to buy alcohol? via @shawm42",
+    "If a book about failures doesn’t sell, is it a success? via @shawm42",
+    "Can you cry underwater? via @shawm42",
+    "Why does a round pizza come in a square box? via @shawm42",
+    "If a deaf person has to go to court, is it still called a hearing? via @shawm42",
+    "Why are you 'in' a movie, but 'on' TV? via @shawm42",
+    "How come 'phonics' isn’t spelled the way it sounds? via @shawm42",
+    "Why is 'abbreviated' such a long word? via @shawm42",
+    "Why is it that when you’re driving and looking for an address, you turn down the volume on the radio? via @shawm42",
+    "Do vegetarians eat animal crackers? via @shawm42",
+    "Why is the man who invests all your money called a broker? via @shawm42",
+    "If the #2 pencil is the most popular, why is it still #2? via @shawm42",
+    "Do bald people get dandruff? via @shawm42",
+    "Why do people pay to go up tall buildings and then put money in binoculars to look at things on the ground? via @shawm42",
+    "How come Superman could stop bullets with his chest, but always ducked when someone threw a gun at him? via @shawm42",
+    "Why is it that no matter what color bubble bath you use the bubbles are always white? via @shawm42",
+    "Why do people constantly return to the refrigerator with hopes that something new to eat will have materialized? via @shawm42",
+    "Why do people keep running over a string a dozen times with their vacuum cleaner, then reach down, pick it up, examine it, then put it down to give the vacuum one more chance? via @shawm42",
+    "How do those dead bugs get into those enclosed light fixtures? via @shawm42",
+    "Why is it that whenever you attempt to catch something that's falling off the table you always manage to knock something else over? via @shawm42",
+    "In winter, why do we try to keep the house as warm as it was in summer when we complained about the heat? via @shawm42",
+    "Why do you never hear father-in-law jokes? via @shawm42",
+    "Why do they sterilize the needle for lethal injections? via @shawm42",
+    "Why is it called 'after dark' when it really is 'after light'? via @shawm42",
+    "Why is lemon juice made with artificial flavor, and dishwashing liquid made with real lemons? via @shawm42",
+    "Why is the person who invests all your money called a broker? via @shawm42",
+    "Why do you drive on a parkway and park on a driveway? via @shawm42",
+    "Why does 'fat chance' and 'slim chance' mean the same thing? via @shawm42",
+    "Why isn't phonetic spelled the way it sounds? via @shawm42",
+    "Why are there interstate highways in Hawaii? via @shawm42",
+    "Why are they called apartments when they are all stuck together? via @shawm42",
+    "Why is there an expiration date on sour cream? via @shawm42",
+    "Why does the word 'monosyllabic' have five syllables? via @shawm42",
+    "Why do 'tug' boats push their barges? via @shawm42",
+    "Why is abbreviated such a long word? via @shawm42",
+    "Why is it that when you transport something by car, it's called a shipment, but when you transport something by ship, it's called cargo? via @shawm42",
+    "Why is it that when you're driving and looking for an address, you turn down the radio? via @shawm42"
 ];
 
 function typeWriter(text, i = 0) {
@@ -72,27 +65,12 @@ function newTweet() {
     tweetElement.innerHTML = '';
     buttons.style.display = 'none';
 
-    fetch(NEWS_URL)
-        .then(response => response.json())
-        .then(data => {
-            const articles = data.articles;
-            if (articles.length > 0) {
-                const randomArticle = articles[Math.floor(Math.random() * articles.length)];
-                const title = randomArticle.title;
-                const url = randomArticle.url;
-                const uniquePhrase = uniquePhrases[Math.floor(Math.random() * uniquePhrases.length)];
-                currentTweet = `${title} ${uniquePhrase} Read more: ${url} via @shawm42`;
-                typeWriter(currentTweet);
-            } else {
-                currentTweet = "Couldn't fetch news. Please try again. via @shawm42";
-                typeWriter(currentTweet);
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching news:', error);
-            currentTweet = "Error fetching news. Please try again. via @shawm42";
-            typeWriter(currentTweet);
-        });
+    const randomTweet = tweets[Math.floor(Math.random() * tweets.length)];
+    const fontSize = randomTweet.length <= 60 ? 111 : Math.max(55, 111 - (randomTweet.length - 60) / 2);
+    tweetElement.style.fontSize = `${fontSize}px`;
+
+    currentTweet = randomTweet;
+    typeWriter(currentTweet);
 }
 
 function copyTweet() {
